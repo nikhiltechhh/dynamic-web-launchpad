@@ -93,22 +93,29 @@ const Header = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          className={`lg:hidden absolute left-0 right-0 top-full transition-all duration-500 ease-in-out ${
+            isMenuOpen
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-4 pointer-events-none"
           }`}
         >
-          <nav className="py-6 space-y-4">
-            {navItems.map((item) => (
+          <nav className="bg-white dark:bg-card shadow-xl rounded-b-2xl mx-4 mb-4 p-6 space-y-2 backdrop-blur-xl border border-border/50">
+            {navItems.map((item, index) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block text-foreground/80 hover:text-primary font-medium transition-colors duration-300 py-2"
+                className="block text-foreground hover:text-primary hover:bg-primary/5 font-medium transition-all duration-300 py-3 px-4 rounded-lg"
+                style={{
+                  animation: isMenuOpen
+                    ? `slideIn 0.3s ease-out ${index * 0.1}s both`
+                    : "none",
+                }}
               >
                 {item.name}
               </a>
             ))}
-            <Button className="w-full bg-gradient-to-r from-primary to-primary/90 mt-4">
+            <Button className="w-full bg-gradient-to-r from-primary to-primary/90 mt-4 hover:shadow-[var(--shadow-glow)] transition-all duration-300">
               Get Started
             </Button>
           </nav>
