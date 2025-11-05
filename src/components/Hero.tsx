@@ -1,28 +1,36 @@
-import { ArrowRight, Sparkles, TrendingUp, Users, Zap, Megaphone, Star, Globe, Shield } from "lucide-react";
+import { ArrowRight, Sparkles, Megaphone, Star, Globe } from "lucide-react";
 import { Button } from "./ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
+import serviceContent from "@/assets/service-content.jpg";
+import serviceMarketing from "@/assets/service-marketing.jpg";
+import serviceSocial from "@/assets/service-social.jpg";
+import serviceVip from "@/assets/service-vip.jpg";
 
 const Hero = () => {
   const services = [
     {
-      icon: Sparkles,
-      title: "News & Content",
-      description: "Premium content creation and distribution",
+      image: serviceContent,
+      title: "Content Creation",
+      description: "Professional media production",
+      tag: "Creative",
     },
     {
-      icon: TrendingUp,
-      title: "Digital Marketing",
-      description: "Strategic campaigns that drive results",
+      image: serviceMarketing,
+      title: "Digital Strategy",
+      description: "Data-driven marketing solutions",
+      tag: "Growth",
     },
     {
-      icon: Zap,
-      title: "Social Engineering",
-      description: "Innovative social media strategies",
+      image: serviceSocial,
+      title: "Social Media",
+      description: "Engaging platform management",
+      tag: "Engagement",
     },
     {
-      icon: Users,
-      title: "VIP Platform Management",
-      description: "Elite social media handling",
+      image: serviceVip,
+      title: "Premium Services",
+      description: "Elite brand solutions",
+      tag: "Exclusive",
     },
   ];
 
@@ -102,7 +110,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Services Grid with Modern Elements */}
+          {/* Services Grid with Images */}
           <div className="relative animate-fade-in-delayed">
             {/* Floating Gradient Orbs */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse" />
@@ -119,34 +127,42 @@ const Hero = () => {
               <Star className="w-12 h-12 text-primary" />
             </div>
             
-            {/* Dot Grid Pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="grid grid-cols-8 grid-rows-8 h-full w-full gap-4">
-                {Array.from({ length: 64 }).map((_, i) => (
-                  <div key={i} className="w-1 h-1 rounded-full bg-primary" />
-                ))}
-              </div>
-            </div>
-            
             <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {services.map((service, index) => (
                 <div
                   key={service.title}
-                  className="group p-5 md:p-6 rounded-xl bg-card/90 backdrop-blur-sm border border-border hover:border-primary/50 hover:shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-2 hover:bg-card relative overflow-hidden"
+                  className="group rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {/* Card gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-                      <service.icon className="w-6 h-6 text-primary" />
+                  {/* Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-90" />
+                    
+                    {/* Tag */}
+                    <div className="absolute top-4 right-4">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/90 text-primary-foreground text-xs font-semibold backdrop-blur-sm">
+                        {service.tag}
+                      </span>
                     </div>
-                    <h3 className="text-base md:text-lg font-semibold mb-2">{service.title}</h3>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="p-5 md:p-6 relative">
+                    <h3 className="text-lg md:text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
                   </div>
+                  
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </div>
               ))}
             </div>
