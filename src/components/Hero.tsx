@@ -1,7 +1,6 @@
-import { ArrowRight, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, TrendingUp, Users, Zap, Megaphone, Star, Globe, Shield } from "lucide-react";
 import { Button } from "./ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
-import servicesBg from "@/assets/services-bg.jpg";
 
 const Hero = () => {
   const services = [
@@ -103,31 +102,51 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Services Grid with Background */}
+          {/* Services Grid with Modern Elements */}
           <div className="relative animate-fade-in-delayed">
-            {/* Background Image */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden opacity-10">
-              <img
-                src={servicesBg}
-                alt="Services background"
-                className="w-full h-full object-cover"
-              />
+            {/* Floating Gradient Orbs */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            
+            {/* Floating Icons */}
+            <div className="absolute top-0 right-0 opacity-10 animate-float hidden md:block">
+              <Megaphone className="w-16 h-16 text-primary" />
+            </div>
+            <div className="absolute bottom-10 left-5 opacity-10 animate-float-delayed hidden md:block">
+              <Globe className="w-20 h-20 text-primary" />
+            </div>
+            <div className="absolute top-1/2 -right-10 opacity-10 animate-float hidden lg:block" style={{ animationDelay: '0.5s' }}>
+              <Star className="w-12 h-12 text-primary" />
+            </div>
+            
+            {/* Dot Grid Pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="grid grid-cols-8 grid-rows-8 h-full w-full gap-4">
+                {Array.from({ length: 64 }).map((_, i) => (
+                  <div key={i} className="w-1 h-1 rounded-full bg-primary" />
+                ))}
+              </div>
             </div>
             
             <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {services.map((service, index) => (
                 <div
                   key={service.title}
-                  className="group p-5 md:p-6 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:border-primary/50 hover:shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-2 hover:bg-card"
+                  className="group p-5 md:p-6 rounded-xl bg-card/90 backdrop-blur-sm border border-border hover:border-primary/50 hover:shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-2 hover:bg-card relative overflow-hidden"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-                    <service.icon className="w-6 h-6 text-primary" />
+                  {/* Card gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <service.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-base md:text-lg font-semibold mb-2">{service.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </p>
                   </div>
-                  <h3 className="text-base md:text-lg font-semibold mb-2">{service.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
                 </div>
               ))}
             </div>
