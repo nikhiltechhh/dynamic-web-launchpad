@@ -4,7 +4,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import serviceContent from "@/assets/service-content.jpg";
 import serviceMarketing from "@/assets/service-marketing.jpg";
 import serviceSocial from "@/assets/service-social.jpg";
-import serviceVip from "@/assets/service-vip.jpg";
+import serviceVip from "@/assets/SocialM.png";
 
 const Hero = () => {
   const services = [
@@ -37,7 +37,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden pt-20 "
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
@@ -78,19 +78,33 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                size="lg"
-                className="bg-gradient-to-r from-primary to-primary/90 hover:shadow-[var(--shadow-glow)] transition-all duration-300 group"
-              >
-                Get Started
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+  size="lg"
+  className="bg-gradient-to-r from-primary to-primary/90 hover:shadow-[var(--shadow-glow)] transition-all duration-300 group"
+  onClick={() => {
+    window.open(
+      "https://wa.me/+918886649499?text=Hi%20I%20am%20interested%20in%20your%20services",
+      "_blank"
+    );
+  }}
+>
+  Get Started
+  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+</Button>
+
               <Button
-                size="lg"
-                variant="outline"
-                className="border-2 hover:bg-primary/5 transition-all duration-300"
-              >
-                View Our Work
-              </Button>
+  size="lg"
+  variant="outline"
+  className="border-2 hover:bg-primary/5 transition-all duration-300"
+  onClick={() => {
+    const gallerySection = document.getElementById("gallery");
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: "smooth" });
+    }
+  }}
+>
+  View Our Work
+</Button>
+
             </div>
 
             {/* Stats */}
@@ -152,14 +166,14 @@ const Hero = () => {
                   </div>
                   
                   {/* Content */}
-                  <div className="p-5 md:p-6 relative">
+                  {/* <div className="p-5 md:p-6 relative">
                     <h3 className="text-lg md:text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
                       {service.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
-                  </div>
+                  </div> */}
                   
                   {/* Hover gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

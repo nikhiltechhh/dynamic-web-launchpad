@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import logo from "@/assets/nr-logo.jpeg";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +17,51 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Check if we need to scroll on page load (from hash navigation)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", id: "home" },
+    { name: "About", id: "about" },
+    { name: "Services", id: "services" },
+    { name: "Gallery", id: "gallery" },
+    { name: "Subscriptions", href: "/pricing" }, // external route
   ];
+
+  const handleNavigation = (e: React.MouseEvent, item: typeof navItems[0]) => {
+    e.preventDefault();
+    
+    if (item.href) {
+      // External route - use React Router navigation and scroll to top
+      window.scrollTo(0, 0);
+      navigate(item.href);
+      setIsMenuOpen(false);
+    } else if (item.id) {
+      // Internal section navigation
+      const section = document.getElementById(item.id);
+      
+      if (section) {
+        // Section exists on current page, just scroll to it
+        section.scrollIntoView({ behavior: "smooth" });
+        setIsMenuOpen(false);
+      } else {
+        // Section doesn't exist, navigate to home page with hash
+        navigate(`/#${item.id}`);
+      }
+    }
+  };
 
   return (
     <header
@@ -34,7 +74,20 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center space-x-2">
+          <a 
+            href="/#home" 
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/');
+              setTimeout(() => {
+                const homeSection = document.getElementById('home');
+                if (homeSection) {
+                  homeSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 100);
+            }}
+            className="flex items-center space-x-2 cursor-pointer"
+          >
             <img
               src={logo}
               alt="NR Media Logo"
@@ -47,7 +100,8 @@ const Header = () => {
             {navItems.map((item) => (
               <a
                 key={item.name}
-                href={item.href}
+                href={item.href || `/#${item.id}`}
+                onClick={(e) => handleNavigation(e, item)}
                 className="text-foreground/80 hover:text-primary font-medium transition-colors duration-300 relative group"
               >
                 {item.name}
@@ -60,6 +114,12 @@ const Header = () => {
           <div className="hidden lg:block">
             <Button
               className="bg-gradient-to-r from-primary to-primary/90 hover:shadow-[var(--shadow-glow)] transition-all duration-300"
+              onClick={() => {
+                window.open(
+                  "https://wa.me/918886649499?text=Hi%20I%20am%20interested%20in%20your%20services",
+                  "_blank"
+                );
+              }}
             >
               Get Started
             </Button>
@@ -103,9 +163,9 @@ const Header = () => {
             {navItems.map((item, index) => (
               <a
                 key={item.name}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="block text-foreground hover:text-primary hover:bg-primary/5 font-medium transition-all duration-300 py-3 px-4 rounded-lg"
+                href={item.href || `/#${item.id}`}
+                onClick={(e) => handleNavigation(e, item)}
+                className="block w-full text-left text-foreground hover:text-primary hover:bg-primary/5 font-medium transition-all duration-300 py-3 px-4 rounded-lg"
                 style={{
                   animation: isMenuOpen
                     ? `slideIn 0.3s ease-out ${index * 0.1}s both`
@@ -115,7 +175,15 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
-            <Button className="w-full bg-gradient-to-r from-primary to-primary/90 mt-4 hover:shadow-[var(--shadow-glow)] transition-all duration-300">
+            <Button
+              className="w-full bg-gradient-to-r from-primary to-primary/90 mt-4 hover:shadow-[var(--shadow-glow)] transition-all duration-300"
+              onClick={() => {
+                window.open(
+                  "https://wa.me/918886649499?text=Hi%20I%20am%20interested%20in%20your%20services",
+                  "_blank"
+                );
+              }}
+            >
               Get Started
             </Button>
           </nav>
