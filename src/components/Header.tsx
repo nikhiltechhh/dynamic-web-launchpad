@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import logo from "@/assets/nr-logo.jpeg";
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
@@ -89,7 +89,7 @@ const Header = () => {
             className="flex items-center space-x-2 cursor-pointer"
           >
             <img
-              src={logo}
+              src="https://i.ibb.co/rRnbQb89/NRlogo.png"
               alt="NR Media Logo"
               className="h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
             />

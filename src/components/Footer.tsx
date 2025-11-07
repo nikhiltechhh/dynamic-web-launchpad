@@ -64,18 +64,25 @@ const Footer = () => {
               <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
             </h3>
             <ul className="space-y-3 mt-6">
-              {["Home", "About", "Services", "Gallery", "Subscriptions"].map((link, idx) => (
-                <li key={link} className="animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>
-                  <a
-                    href="#"
-                    className="text-sm hover:text-gray-200 transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-0 h-0.5 bg-white group-hover:w-4 transition-all duration-300" />
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
+  {[
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "Subscriptions", href: "pricing" },
+  ].map(({ name, href }, idx) => (
+    <li key={name} className="animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+      <a
+        href={href}
+        className="text-sm hover:text-gray-200 transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group"
+      >
+        <span className="w-0 h-0.5 bg-white group-hover:w-4 transition-all duration-300" />
+        {name}
+      </a>
+    </li>
+  ))}
+</ul>
+
           </div>
 
           {/* Services */}
