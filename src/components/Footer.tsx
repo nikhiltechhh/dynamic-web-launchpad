@@ -45,7 +45,7 @@ const Footer = () => {
                 alt="NR Media Logo"
                 className="relative h-16 w-auto object-contain bg-white/5 p-2 rounded hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute -top-2 -right-2 w-20 h-20 border-2 border-white/30 rounded pointer-events-none animate-pulse" />
+              <div className="absolute -top-2 -right-2 rounded pointer-events-none animate-pulse" />
             </div>
             <p className="text-sm leading-relaxed text-white/90">
               NR Media is your trusted source for digital news and media content.
@@ -123,7 +123,7 @@ const Footer = () => {
               {/* Contact Info */}
               <div className="space-y-3">
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+918886649499"
                   className="flex items-start gap-3 text-sm hover:text-gray-200 transition-all duration-300 group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
@@ -132,7 +132,7 @@ const Footer = () => {
                   <span className="pt-1">+91 8886649499</span>
                 </a>
                 <a
-                  href="mailto:info@nrmedia.com"
+                  href="mailto:nrmediagroup@gmail.com"
                   className="flex items-start gap-3 text-sm hover:text-gray-200 transition-all duration-300 group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">

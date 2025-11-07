@@ -13,7 +13,7 @@ const services = [
     icon: Newspaper,
     title: "News & Content Provider",
     description: "Professional news coverage and content creation tailored to your audience needs. We deliver compelling stories that resonate with your target audience.",
-    image: newsImage,
+    image: "https://i.ibb.co/CKKz4qXV/news.jpg",
     features: ["Breaking News", "Feature Articles", "Content Strategy"]
   },
   {
